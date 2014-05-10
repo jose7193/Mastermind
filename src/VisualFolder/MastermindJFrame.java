@@ -66,7 +66,7 @@ public class MastermindJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 0, 0));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         gamePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -501,7 +501,8 @@ public class MastermindJFrame extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        getContentPane().add(gamePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        getContentPane().add(gamePanel);
+        gamePanel.setBounds(10, 11, 389, 595);
 
         colorSelectorPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -516,7 +517,8 @@ public class MastermindJFrame extends javax.swing.JFrame {
             .addGap(0, 208, Short.MAX_VALUE)
         );
 
-        getContentPane().add(colorSelectorPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 220, 210));
+        getContentPane().add(colorSelectorPanel);
+        colorSelectorPanel.setBounds(410, 380, 220, 210);
 
         correctPeg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -531,10 +533,10 @@ public class MastermindJFrame extends javax.swing.JFrame {
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
-        getContentPane().add(correctPeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 315, 230, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anne\\Desktop\\tst2.jpg")); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 620));
+        getContentPane().add(correctPeg);
+        correctPeg.setBounds(405, 315, 230, 52);
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 650, 620);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -547,7 +549,8 @@ public class MastermindJFrame extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, -10, -1, -1));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(470, -10, 100, 100);
 
         myGame.setText("Game");
 
