@@ -16,7 +16,7 @@ public class MastermindJFrame extends javax.swing.JFrame {
      * Creates new form MastermindJFrame
      */
     public MastermindJFrame() {
-        initComponents();
+        initComponents();//
     }
 
     /**
