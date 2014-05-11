@@ -1,4 +1,5 @@
-package moduleTestbench; /**
+package moduleTestbench;
+/**
  * Testbench for Peg and hintPeg
  * 05/05: first edited -- AC
  * 

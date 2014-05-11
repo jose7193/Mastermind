@@ -1,4 +1,5 @@
-package moduleTestbench; /**
+package moduleTestbench;
+/**
  * Testbench for Decoding Board
  * 05/05: first edited -- AC
  * 
