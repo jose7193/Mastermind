@@ -1,10 +1,9 @@
+package VisualFolder;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-//package game;
 
 /**
  *
@@ -509,12 +508,12 @@ public class MastermindJFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout colorSelectorPanelLayout = new javax.swing.GroupLayout(colorSelectorPanel);
         colorSelectorPanel.setLayout(colorSelectorPanelLayout);
         colorSelectorPanelLayout.setHorizontalGroup(
-            colorSelectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 218, Short.MAX_VALUE)
+                colorSelectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 218, Short.MAX_VALUE)
         );
         colorSelectorPanelLayout.setVerticalGroup(
-            colorSelectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 208, Short.MAX_VALUE)
+                colorSelectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 208, Short.MAX_VALUE)
         );
 
         getContentPane().add(colorSelectorPanel);
@@ -525,12 +524,12 @@ public class MastermindJFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout correctPegLayout = new javax.swing.GroupLayout(correctPeg);
         correctPeg.setLayout(correctPegLayout);
         correctPegLayout.setHorizontalGroup(
-            correctPegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                correctPegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE)
         );
         correctPegLayout.setVerticalGroup(
-            correctPegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+                correctPegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 50, Short.MAX_VALUE)
         );
 
         getContentPane().add(correctPeg);

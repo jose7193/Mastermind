@@ -1,9 +1,10 @@
-/**
+package moduleTestbench; /**
  * Testbench for Decoding Board
  * 05/05: first edited -- AC
  * 
  */
 
+import moduleFolder.DecodingBoard;
 import moduleFolder.Peg;
 import moduleFolder.HintPeg;
 import java.awt.Color;

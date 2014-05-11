@@ -1,3 +1,7 @@
+package moduleTestbench;
+
+import moduleFolder.Player;
+
 /**
  * Testbench for Player
  * 05/05: first edited -- AC

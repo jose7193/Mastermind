@@ -1,4 +1,7 @@
-//package ControlFolder;
+package ControlFolder;//package ControlFolder;
+
+import VisualFolder.MastermindJFrame;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,15 +10,15 @@ import java.awt.*;
  */
 public class GameDriver {
 
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
 		//5/10/2014 Random Test.
             //Ideal size is 650,700
-            
+
             JFrame win = new MastermindJFrame();
             win.setSize(650, 700);
             win.setVisible(true);
-        
+
 
 	}
 
