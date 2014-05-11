@@ -27,17 +27,35 @@ public class GameController {
     }
 
     public void setCodeMakerPegColors(Peg[] codePegs) {
-        Color[] colors = new Color[codePegs.length];
-        for (int i = 0; i < codePegs.length; i++) {
-            colors[i] = codePegs[i].getPegColor();
-        }
-
+        Color[] colors = changeArrayOfPegsToArrayOfColors(codePegs);
         decodingBoard.setCMakeRowColor(colors);
     }
 
     public Peg[] getCodeMakerPegs() {
         Color[] colors = decodingBoard.getCMakeRowColor();
+        return changeArrayOfColorsToArrayOfPegs(colors);
+    }
 
+    public void setCodeBreakerGuessPegs(Peg[] pegs, int row) {
+        Color[] colors = changeArrayOfPegsToArrayOfColors(pegs);
+        decodingBoard.setCBreakRowColor(colors, row);
+    }
+
+    public Peg[] getCodeMakersGuessPegs(int row) {
+        Color[] colors = decodingBoard.getCBreakRowColor(row);
+        return changeArrayOfColorsToArrayOfPegs(colors);
+    }
+
+    private Color[] changeArrayOfPegsToArrayOfColors(Peg[] pegs) {
+        Color[] colors = new Color[pegs.length];
+        for (int i = 0; i < pegs.length; i++) {
+            colors[i] = pegs[i].getPegColor();
+        }
+
+        return colors;
+    }
+
+    private Peg[] changeArrayOfColorsToArrayOfPegs(Color[] colors) {
         Peg[] pegs = new Peg[colors.length];
         for (int i = 0; i < colors.length; i++) {
             pegs[i] = new Peg(colors[i]);
@@ -46,9 +64,8 @@ public class GameController {
         return pegs;
     }
 
-    public HintPeg[] getHintColors() {
-
-        return null;
+    public HintPeg[] getHintPegs(int row) {
+        return new HintPeg[]{null, null, null, null};
     }
 
 }
