@@ -65,7 +65,35 @@ public class GameController {
     }
 
     public HintPeg[] getHintPegs(int row) {
-        return new HintPeg[]{null, null, null, null};
+        Color[] codedPegs = decodingBoard.getCMakeRowColor();
+        Color[] guessPegs = decodingBoard.getCBreakRowColor(row);
+        int numOfPegs = codedPegs.length;
+
+        HintPeg[] hintPegs = new HintPeg[numOfPegs];
+        HintPeg hintPeg = null;
+
+
+        for ( int i = 0, j ;i < codedPegs.length; i++) {
+            int lastPositionOfMatchingColor = 0;
+            j = 0;
+            for ( ; j < guessPegs.length; j++) {
+                if ((codedPegs[i]) == guessPegs[j] && (i == j)) {
+                    hintPegs[j] = new HintPeg(Color.BLACK);
+                    lastPositionOfMatchingColor = j;
+                    break;
+                } else if (codedPegs[i] == guessPegs[j] ) {
+                    hintPeg = new HintPeg(Color.WHITE);
+                    lastPositionOfMatchingColor = j;
+                }
+            }
+
+            if (hintPegs[lastPositionOfMatchingColor] == null) {
+                hintPegs[lastPositionOfMatchingColor] = hintPeg;
+            }
+            hintPeg = null;
+        }
+
+        return hintPegs;
     }
 
 }
