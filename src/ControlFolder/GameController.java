@@ -26,6 +26,15 @@ public class GameController {
         decodingBoard = new DecodingBoard();
     }
 
+    public void startNewGame() {
+        numOfTurnsLeft = NUMBER_OF_TURNS_ALLOWED;
+        decodingBoard.clearBoard();
+    }
+
+    public int getNumberOfStepsLeft() {
+        return numOfTurnsLeft;
+    }
+
     public void setCodeMakerPegColors(Peg[] codePegs) {
         Color[] colors = changeArrayOfPegsToArrayOfColors(codePegs);
         decodingBoard.setCMakeRowColor(colors);
@@ -37,8 +46,11 @@ public class GameController {
     }
 
     public void setCodeBreakerGuessPegs(Peg[] pegs, int row) {
-        Color[] colors = changeArrayOfPegsToArrayOfColors(pegs);
-        decodingBoard.setCBreakRowColor(colors, row);
+        if (numOfTurnsLeft > 0) {
+            Color[] colors = changeArrayOfPegsToArrayOfColors(pegs);
+            decodingBoard.setCBreakRowColor(colors, row);
+            numOfTurnsLeft--;
+        }
     }
 
     public Peg[] getCodeMakersGuessPegs(int row) {
@@ -73,15 +85,15 @@ public class GameController {
         HintPeg hintPeg = null;
 
 
-        for ( int i = 0, j ;i < codedPegs.length; i++) {
+        for (int i = 0, j; i < codedPegs.length; i++) {
             int lastPositionOfMatchingColor = 0;
             j = 0;
-            for ( ; j < guessPegs.length; j++) {
+            for (; j < guessPegs.length; j++) {
                 if ((codedPegs[i]) == guessPegs[j] && (i == j)) {
                     hintPegs[j] = new HintPeg(Color.BLACK);
                     lastPositionOfMatchingColor = j;
                     break;
-                } else if (codedPegs[i] == guessPegs[j] ) {
+                } else if (codedPegs[i] == guessPegs[j]) {
                     hintPeg = new HintPeg(Color.WHITE);
                     lastPositionOfMatchingColor = j;
                 }
