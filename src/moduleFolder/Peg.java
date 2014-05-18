@@ -19,12 +19,12 @@ public class Peg {
      
     public Color decodePegColor(int i) {
         switch (i) {
-            case (1): pegColor = Color.CYAN; break;
-            case (2): pegColor = Color.GREEN; break;
-            case (3): pegColor = Color.RED; break;
-            case (4): pegColor = Color.BLUE; break;
-            case (5): pegColor = Color.YELLOW; break;
-            case (6): pegColor = Color.MAGENTA; break;
+            case (1): pegColor = Color.BLUE; break;
+            case (2): pegColor = Color.RED; break;
+            case (3): pegColor = Color.PINK; break;
+            case (4): pegColor = Color.ORANGE; break;
+            case (5): pegColor = Color.GRAY; break;
+            case (6): pegColor = Color.GREEN ; break;
         } 
         return pegColor;
     }
