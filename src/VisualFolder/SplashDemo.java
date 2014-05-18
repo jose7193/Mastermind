@@ -1,3 +1,5 @@
+
+package VisualFolder;
 /*
  * SplashDemo.java
  * Dependencies: splash_screen.gif
