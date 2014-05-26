@@ -1,11 +1,7 @@
 package ControlFolder;
 
-import moduleFolder.HintPeg;
-import moduleFolder.Peg;
 import moduleFolder.Player;
 import org.testng.annotations.Test;
-
-import java.awt.*;
 
 import static ControlFolder.Pegs.*;
 
