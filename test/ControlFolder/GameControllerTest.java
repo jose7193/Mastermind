@@ -1,13 +1,13 @@
 package ControlFolder;
 
-import VisualFolder.Game;
 import moduleFolder.HintPeg;
 import moduleFolder.Peg;
 import moduleFolder.Player;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.awt.*;
+
+import static ControlFolder.Pegs.*;
 
 /**
  * Created by AlexL on 5/11/14.
@@ -24,11 +24,11 @@ public class GameControllerTest {
         int initialNumber = gameController.getNumberOfStepsLeft();
         int finalNumber;
 
-        Peg[] guessPegs = new Peg[]{
-                new Peg(Color.CYAN),
-                new Peg(Color.CYAN),
-                new Peg(Color.CYAN),
-                new Peg(Color.CYAN)
+        int[] guessPegs = new int[]{
+                BLUE.getIntValue(),
+                BLUE.getIntValue(),
+                BLUE.getIntValue(),
+                BLUE.getIntValue()
         };
 
         // When
@@ -46,18 +46,18 @@ public class GameControllerTest {
         // Given
         GameController gameController = new GameController(player1, player2);
 
-        Peg[] codePegs = new Peg[]{
-                new Peg(Color.GREEN),
-                new Peg(Color.RED),
-                new Peg(Color.BLUE),
-                new Peg(Color.YELLOW)
+        int[] guessPegs = new int[]{
+                GREEN.getIntValue(),
+                RED.getIntValue(),
+                BLUE.getIntValue(),
+                ORANGE.getIntValue()
         };
 
-        Peg[] guessPegs = new Peg[]{
-                new Peg(Color.CYAN),
-                new Peg(Color.CYAN),
-                new Peg(Color.CYAN),
-                new Peg(Color.CYAN)
+        int[] codePegs = new int[]{
+                GREY.getIntValue(),
+                GREY.getIntValue(),
+                GREY.getIntValue(),
+                GREY.getIntValue()
         };
 
         gameController.setCodeBreakerGuessPegs(codePegs, gameController.getNumberOfStepsLeft());
@@ -75,20 +75,20 @@ public class GameControllerTest {
         // Given
         GameController gameController = new GameController(player1, player2);
 
-        Peg[] codePegs = new Peg[]{
-                new Peg(Color.GREEN),
-                new Peg(Color.RED),
-                new Peg(Color.BLUE),
-                new Peg(Color.YELLOW)
+        int[] codePegs = new int[]{
+                GREEN.getIntValue(),
+                RED.getIntValue(),
+                BLUE.getIntValue(),
+                ORANGE.getIntValue()
         };
 
         // When
         gameController.setCodeMakerPegColors(codePegs);
-        Peg[] result = gameController.getCodeMakerPegs();
+        int[] result = gameController.getCodeMakerPegs();
 
         // Then
         for (int i = 0; i < codePegs.length; i++) {
-            assert codePegs[i].getPegColor() == result[i].getPegColor();
+            assert codePegs[i] == result[i];
         }
     }
 
@@ -98,20 +98,20 @@ public class GameControllerTest {
         GameController gameController = new GameController(player1, player2);
 
         int currentRow = 2;
-        Peg[] codePegs = new Peg[]{
-                new Peg(Color.GREEN),
-                new Peg(Color.RED),
-                new Peg(Color.BLUE),
-                new Peg(Color.YELLOW)
+        int[] codePegs = new int[]{
+                GREEN.getIntValue(),
+                RED.getIntValue(),
+                BLUE.getIntValue(),
+                ORANGE.getIntValue()
         };
 
         // When
         gameController.setCodeBreakerGuessPegs(codePegs, currentRow);
-        Peg[] result = gameController.getCodeMakersGuessPegs(currentRow);
+        int[] result = gameController.getCodeMakersGuessPegs(currentRow);
 
         // Then
         for (int i = 0; i < codePegs.length; i++) {
-            assert codePegs[i].getPegColor() == result[i].getPegColor();
+            assert codePegs[i] == result[i];
         }
     }
 
@@ -121,28 +121,34 @@ public class GameControllerTest {
         GameController gameController = new GameController(player1, player2);
 
         int currentRow = 1;
-        Peg[] codePegs = new Peg[]{
-                new Peg(Color.GREEN),
-                new Peg(Color.RED),
-                new Peg(Color.BLUE),
-                new Peg(Color.YELLOW)
+        int[] codePegs = new int[]{
+                GREEN.getIntValue(),
+                RED.getIntValue(),
+                BLUE.getIntValue(),
+                ORANGE.getIntValue()
         };
 
-        Peg[] guessPegs = new Peg[]{
-                new Peg(Color.CYAN),
-                new Peg(Color.CYAN),
-                new Peg(Color.CYAN),
-                new Peg(Color.CYAN)
+        int[] guessPegs = new int[]{
+                PINK.getIntValue(),
+                PINK.getIntValue(),
+                PINK.getIntValue(),
+                PINK.getIntValue()
         };
 
-        HintPeg[] expectedPegs = new HintPeg[]{null, null, null, null};
+
+        int[] expectedPegs = new int[]{
+                NO_VALUE.getIntValue(),
+                NO_VALUE.getIntValue(),
+                NO_VALUE.getIntValue(),
+                NO_VALUE.getIntValue()
+        };
         gameController.setCodeMakerPegColors(codePegs);
 
         // When
         gameController.setCodeBreakerGuessPegs(guessPegs, currentRow);
 
         // Then
-        HintPeg[] actualPegs = gameController.getHintPegs(currentRow);
+        int[] actualPegs = gameController.getHintPegs(currentRow);
         for (int i = 0; i < codePegs.length; i++) {
             assert expectedPegs[i] == actualPegs[i];
         }
@@ -154,32 +160,36 @@ public class GameControllerTest {
         GameController gameController = new GameController(player1, player2);
 
         int currentRow = 1;
-        Peg[] codePegs = new Peg[]{
-                new Peg(Color.GREEN),
-                new Peg(Color.RED),
-                new Peg(Color.BLUE),
-                new Peg(Color.YELLOW)
+        int[] codePegs = new int[]{
+                GREEN.getIntValue(),
+                RED.getIntValue(),
+                BLUE.getIntValue(),
+                ORANGE.getIntValue()
         };
 
-        Peg[] guessPegs = new Peg[]{
-                new Peg(Color.CYAN),
-                new Peg(Color.GREEN),
-                new Peg(Color.CYAN),
-                new Peg(Color.CYAN)
+        int[] guessPegs = new int[]{
+                GREY.getIntValue(),
+                GREEN.getIntValue(),
+                GREY.getIntValue(),
+                GREY.getIntValue()
         };
 
-        HintPeg[] expectedPegs = new HintPeg[]{null, new HintPeg(Color.WHITE), null, null};
+        int[] expectedPegs = new int[]{
+                NO_VALUE.getIntValue(),
+                WHITE.getIntValue(),
+                NO_VALUE.getIntValue(),
+                NO_VALUE.getIntValue()
+        };
+
         gameController.setCodeMakerPegColors(codePegs);
 
         // When
         gameController.setCodeBreakerGuessPegs(guessPegs, currentRow);
 
         // Then
-        HintPeg[] actualPegs = gameController.getHintPegs(currentRow);
+        int[] actualPegs = gameController.getHintPegs(currentRow);
         for (int i = 0; i < codePegs.length; i++) {
-            if ((actualPegs[i] != null)) {
-                assert expectedPegs[i].getPegColor() == actualPegs[i].getPegColor();
-            }
+            assert expectedPegs[i] == actualPegs[i];
         }
     }
 
@@ -189,32 +199,35 @@ public class GameControllerTest {
         GameController gameController = new GameController(player1, player2);
 
         int currentRow = 1;
-        Peg[] codePegs = new Peg[]{
-                new Peg(Color.RED),
-                new Peg(Color.GREEN),
-                new Peg(Color.BLUE),
-                new Peg(Color.YELLOW)
+        int[] codePegs = new int[]{
+                RED.getIntValue(),
+                GREEN.getIntValue(),
+                BLUE.getIntValue(),
+                GREY.getIntValue()
         };
 
-        Peg[] guessPegs = new Peg[]{
-                new Peg(Color.GREEN),
-                new Peg(Color.GREEN),
-                new Peg(Color.CYAN),
-                new Peg(Color.CYAN)
+        int[] guessPegs = new int[]{
+                GREEN.getIntValue(),
+                GREEN.getIntValue(),
+                ORANGE.getIntValue(),
+                ORANGE.getIntValue()
         };
 
-        HintPeg[] expectedPegs = new HintPeg[]{null, new HintPeg(Color.BLACK), null, null};
+        int[] expectedHintPegs = new int[]{
+                NO_VALUE.getIntValue(),
+                BLACK.getIntValue(),
+                NO_VALUE.getIntValue(),
+                NO_VALUE.getIntValue()
+        };
         gameController.setCodeMakerPegColors(codePegs);
 
         // When
         gameController.setCodeBreakerGuessPegs(guessPegs, currentRow);
 
         // Then
-        HintPeg[] actualPegs = gameController.getHintPegs(currentRow);
+        int[] actualPegs = gameController.getHintPegs(currentRow);
         for (int i = 0; i < codePegs.length; i++) {
-            if ((actualPegs[i] != null)) {
-                assert expectedPegs[i].getPegColor() == actualPegs[i].getPegColor();
-            }
+            assert expectedHintPegs[i] == actualPegs[i];
         }
     }
 
@@ -224,35 +237,38 @@ public class GameControllerTest {
         GameController gameController = new GameController(player1, player2);
 
         int currentRow = 1;
-        Peg[] codePegs = new Peg[]{
-                new Peg(Color.RED),
-                new Peg(Color.RED),
-                new Peg(Color.RED),
-                new Peg(Color.RED)
+        int[] codePegs = new int[]{
+                RED.getIntValue(),
+                RED.getIntValue(),
+                RED.getIntValue(),
+                RED.getIntValue()
         };
 
-        Peg[] guessPegs = new Peg[]{
-                new Peg(Color.GREEN),
-                new Peg(Color.GREEN),
-                new Peg(Color.RED),
-                new Peg(Color.CYAN)
+        int[] guessPegs = new int[]{
+                GREEN.getIntValue(),
+                GREEN.getIntValue(),
+                RED.getIntValue(),
+                GREY.getIntValue()
         };
 
-        HintPeg[] expectedPegs = new HintPeg[]{null, null, new HintPeg(Color.BLACK), null};
+        int[] expectedHintPegs = new int[]{
+                NO_VALUE.getIntValue(),
+                NO_VALUE.getIntValue(),
+                BLACK.getIntValue(),
+                NO_VALUE.getIntValue()
+        };
         gameController.setCodeMakerPegColors(codePegs);
 
         // When
         gameController.setCodeBreakerGuessPegs(guessPegs, currentRow);
 
         // Then
-        HintPeg[] actualPegs = gameController.getHintPegs(currentRow);
+        int[] actualHintPegs = gameController.getHintPegs(currentRow);
         for (int i = 0; i < codePegs.length; i++) {
-            if ((actualPegs[i] != null)) {
-                actualPegs[i].getPegColor();
-                assert expectedPegs[i].getPegColor() == actualPegs[i].getPegColor();
-            }
+            assert expectedHintPegs[i] == actualHintPegs[i];
         }
     }
+
 
     @Test
     public void shouldReturnOneBlackHintPegAndWhiteHingPeg() {
@@ -260,35 +276,38 @@ public class GameControllerTest {
         GameController gameController = new GameController(player1, player2);
 
         int currentRow = 1;
-        Peg[] codePegs = new Peg[]{
-                new Peg(Color.BLUE),
-                new Peg(Color.RED),
-                new Peg(Color.RED),
-                new Peg(Color.RED)
+        int[] codePegs = new int[]{
+                BLUE.getIntValue(),
+                RED.getIntValue(),
+                RED.getIntValue(),
+                RED.getIntValue()
         };
 
-        Peg[] guessPegs = new Peg[]{
-                new Peg(Color.RED),
-                new Peg(Color.GREEN),
-                new Peg(Color.RED),
-                new Peg(Color.CYAN)
+        int[] guessPegs = new int[]{
+                RED.getIntValue(),
+                GREEN.getIntValue(),
+                RED.getIntValue(),
+                GREY.getIntValue()
         };
 
-        HintPeg[] expectedPegs = new HintPeg[]{null, new HintPeg(Color.WHITE), new HintPeg(Color.BLACK), null};
+        int[] expectedHintPegs = new int[]{
+                WHITE.getIntValue(),
+                NO_VALUE.getIntValue(),
+                BLACK.getIntValue(),
+                NO_VALUE.getIntValue()
+        };
         gameController.setCodeMakerPegColors(codePegs);
 
         // When
         gameController.setCodeBreakerGuessPegs(guessPegs, currentRow);
 
         // Then
-        HintPeg[] actualPegs = gameController.getHintPegs(currentRow);
+        int[] actualHintPegs = gameController.getHintPegs(currentRow);
         for (int i = 0; i < codePegs.length; i++) {
-            if ((actualPegs[i] != null)) {
-                actualPegs[i].getPegColor();
-                assert expectedPegs[i].getPegColor() == actualPegs[i].getPegColor();
-            }
+            assert expectedHintPegs[i] == actualHintPegs[i];
         }
     }
+
 
     @Test
     public void shouldReturnAllBlackHintPegs() {
@@ -296,34 +315,36 @@ public class GameControllerTest {
         GameController gameController = new GameController(player1, player2);
 
         int currentRow = 1;
-        Peg[] codePegs = new Peg[]{
-                new Peg(Color.RED),
-                new Peg(Color.RED),
-                new Peg(Color.RED),
-                new Peg(Color.RED)
+        int[] codePegs = new int[]{
+                RED.getIntValue(),
+                RED.getIntValue(),
+                RED.getIntValue(),
+                RED.getIntValue()
         };
 
-        Peg[] guessPegs = new Peg[]{
-                new Peg(Color.RED),
-                new Peg(Color.RED),
-                new Peg(Color.RED),
-                new Peg(Color.RED)
+        int[] guessPegs = new int[]{
+                RED.getIntValue(),
+                RED.getIntValue(),
+                RED.getIntValue(),
+                RED.getIntValue()
         };
 
-        HintPeg[] expectedPegs = new HintPeg[]{new HintPeg(Color.BLACK), new HintPeg(Color.BLACK), new HintPeg(Color.BLACK), new HintPeg(Color.BLACK)};
+        int[] expectedHintPegs = new int[]{
+                BLACK.getIntValue(),
+                BLACK.getIntValue(),
+                BLACK.getIntValue(),
+                BLACK.getIntValue()};
         gameController.setCodeMakerPegColors(codePegs);
 
         // When
         gameController.setCodeBreakerGuessPegs(guessPegs, currentRow);
 
         // Then
-        HintPeg[] actualPegs = gameController.getHintPegs(currentRow);
+        int[] actualHintPegs = gameController.getHintPegs(currentRow);
         for (int i = 0; i < codePegs.length; i++) {
-            if ((actualPegs[i] != null)) {
-                actualPegs[i].getPegColor();
-                assert expectedPegs[i].getPegColor() == actualPegs[i].getPegColor();
-            }
+            assert expectedHintPegs[i] == actualHintPegs[i];
         }
+
     }
 
     @Test
@@ -332,33 +353,35 @@ public class GameControllerTest {
         GameController gameController = new GameController(player1, player2);
 
         int currentRow = 1;
-        Peg[] codePegs = new Peg[]{
-                new Peg(Color.RED),
-                new Peg(Color.BLUE),
-                new Peg(Color.CYAN),
-                new Peg(Color.RED)
+        int[] codePegs = new int[]{
+                RED.getIntValue(),
+                BLUE.getIntValue(),
+                GREY.getIntValue(),
+                RED.getIntValue()
         };
 
-        Peg[] guessPegs = new Peg[]{
-                new Peg(Color.BLUE),
-                new Peg(Color.RED),
-                new Peg(Color.RED),
-                new Peg(Color.CYAN)
+        int[] guessPegs = new int[]{
+                BLUE.getIntValue(),
+                RED.getIntValue(),
+                RED.getIntValue(),
+                GREY.getIntValue()
         };
 
-        HintPeg[] expectedPegs = new HintPeg[]{new HintPeg(Color.WHITE), new HintPeg(Color.WHITE), new HintPeg(Color.WHITE), new HintPeg(Color.WHITE)};
+        int[] expectedHintPegs = new int[]{
+                WHITE.getIntValue(),
+                WHITE.getIntValue(),
+                WHITE.getIntValue(),
+                WHITE.getIntValue()
+        };
         gameController.setCodeMakerPegColors(codePegs);
 
         // When
         gameController.setCodeBreakerGuessPegs(guessPegs, currentRow);
 
         // Then
-        HintPeg[] actualPegs = gameController.getHintPegs(currentRow);
+        int[] actualHintPegs = gameController.getHintPegs(currentRow);
         for (int i = 0; i < codePegs.length; i++) {
-            if ((actualPegs[i] != null)) {
-                actualPegs[i].getPegColor();
-                assert expectedPegs[i].getPegColor() == actualPegs[i].getPegColor();
-            }
+             assert expectedHintPegs[i] == actualHintPegs[i];
         }
     }
 }
