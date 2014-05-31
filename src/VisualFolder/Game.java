@@ -38,7 +38,7 @@ public class Game extends GameGrid implements GGMouseListener
     public Game()
     {
 
-        super(7, 13, 60, null, "VisualFolder/sprites/mastermind_bg_white.png", false);
+        super(7, 13, 60, Color.RED, "VisualFolder/sprites/mastermind_bg_white.png", false);
         this.addMouseListener(this, GGMouse.lPress | GGMouse.rPress);
         this.setTitle("MasterMind Game - Group 5");
         getBg().setPaintColor(Color.red);
