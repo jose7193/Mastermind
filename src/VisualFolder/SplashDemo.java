@@ -71,6 +71,7 @@ public class SplashDemo extends JFrame implements ActionListener {
             }
         }
         splash.close();
+        
         setVisible(true);
         toFront();
     }
