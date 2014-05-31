@@ -20,10 +20,9 @@ for frontend (unless backend can be chaged
 /
 */
 
-import java.awt.*;
-
 import ControlFolder.GameController;
 import ch.aplu.jgamegrid.*;
+import java.awt.*;
 import moduleFolder.Player;
 
 
@@ -39,7 +38,7 @@ public class Game extends GameGrid implements GGMouseListener
     public Game()
     {
 
-        super(7, 13, 60, null, "sprites/mastermind_bg_white.png", false);
+        super(7, 13, 60, null, "VisualFolder/sprites/mastermind_bg_white.png", false);
         this.addMouseListener(this, GGMouse.lPress | GGMouse.rPress);
         this.setTitle("MasterMind Game - Group 5");
         getBg().setPaintColor(Color.red);
@@ -155,7 +154,7 @@ public class Game extends GameGrid implements GGMouseListener
         {
             gamePeg gamePeg = new gamePeg();
             gamePeg.show(spriteNr);
-            addActor(gamePeg, new Location(x, 1));
+            addActor(gamePeg, new Location(x, 1) {});
             x++;
         }
     }
@@ -223,8 +222,11 @@ public class Game extends GameGrid implements GGMouseListener
     }
 
 
+public static void main(String[] args)
+  {
+      Game mastermind = new Game();
+  }
 }
-
 
 // -----------class currentRow -----------
 // Assigns GUI for the class
@@ -232,7 +234,7 @@ class currentRow extends Actor
 {
     public currentRow ()
     {
-        super("sprites/activeRowMarker.png");
+        super("VisualFolder/sprites/activeRowMarker.png");
     }
 }
 
@@ -244,7 +246,7 @@ class EvalgamePeg extends Actor
     public EvalgamePeg(int sprite)
     {
         // sprite 0 = black, sprite 1 = white
-        super(true, "sprites/EvalPeg.png", 2);
+        super(true, "VisualFolder/sprites/EvalPeg.png", 2);
         show(sprite);
     }
 }
@@ -256,7 +258,7 @@ class EvaluateButton extends Actor
 {
     public EvaluateButton()
     {
-        super("sprites/EvaluateButton.png");
+        super("VisualFolder/sprites/EvaluateButton.png");
     }
 }
 
@@ -266,7 +268,7 @@ class newGameButton extends Actor
 {
     public newGameButton()
     {
-        super("sprites/new_game.png");
+        super("VisualFolder/sprites/new_game.png");
     }
 }
 
@@ -277,7 +279,7 @@ class helpButton extends Actor
 {
     public helpButton()
     {
-        super("sprites/help.png");
+        super("VisualFolder/sprites/help.png");
     }
 }
 //-------- class gamePeg-------------------------
@@ -288,6 +290,6 @@ class gamePeg extends Actor
     public static final int gamePegs = 8;
     public gamePeg()
     {
-        super("sprites/gamePeg.png", gamePegs);
+        super("VisualFolder/sprites/gamePeg.png", gamePegs);
     }
 }
