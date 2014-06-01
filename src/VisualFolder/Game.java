@@ -74,10 +74,10 @@ public class Game extends GameGrid implements GGMouseListener {
 
         if (isClickOnGamePegs) {
             if (getOneActorAt(loc) == null) {
-                this.addActor(new gamePeg(), loc);
+                this.addActor(new GamePeg(), loc);
                 gamePegsOnBoard++;
 
-                // Go! button appears once 4 gamePeg guesses have been established
+                // Go! button appears once 4 GamePeg guesses have been established
                 if (gamePegsOnBoard == 4) {
                     addActor(new EvaluateButton(), new Location(1, currentPegCombinationStep));
                 }
@@ -122,7 +122,7 @@ public class Game extends GameGrid implements GGMouseListener {
     private void showSolution() {
         int x = 2;
         for (int spriteNr : winningPegCombination) {
-            gamePeg gamePeg = new gamePeg();
+            GamePeg gamePeg = new GamePeg();
             gamePeg.show(spriteNr);
             addActor(gamePeg, new Location(x, 1) {});
             x++;
@@ -137,7 +137,7 @@ public class Game extends GameGrid implements GGMouseListener {
         gameController.startNewGame();
 
         for (int i = 0; i < winningPegCombination.length; i++) {
-            winningPegCombination[i] = (int) (Math.random() * gamePeg.gamePegs);
+            winningPegCombination[i] = (int) (Math.random() * GamePeg.gamePegs);
         }
 
         gameController.setCodeMakerPegColors(winningPegCombination);
@@ -145,9 +145,9 @@ public class Game extends GameGrid implements GGMouseListener {
         marker = new currentRow();
         addActor(marker, new Location(1, currentPegCombinationStep));
 
-        // Plan to add new actors ; one for each gamePeg in the color selector panel
-        addActor(new newGameButton(), new Location(1, 11));
-        addActor(new helpButton(), new Location(1, 10));
+        // Plan to add new actors ; one for each GamePeg in the color selector panel
+        addActor(new NewGameButton(), new Location(1, 11));
+        addActor(new HelpButton(), new Location(1, 10));
         refresh();
     }
 
@@ -167,11 +167,15 @@ public class Game extends GameGrid implements GGMouseListener {
 
         showHintgamePegs(whitegamePegs, blackgamePegs);
 
-        if (blackgamePegs == 4)
+        if (blackgamePegs == 4) {
             finishRound();
+            addActor(new GameWonGif(), new Location(1, 12));
+        }
 
-        if (currentPegRow == 2)
+        if (currentPegRow == 2) {
             finishRound();
+            addActor(new GameOverGif(), new Location(1, 12));
+        }
 
         marker.setLocation(new Location(1, currentPegRow - 1));
         gamePegsOnBoard = 0;
@@ -199,22 +203,34 @@ class EvaluateButton extends Actor {
     }
 }
 
-class newGameButton extends Actor {
-    public newGameButton() {
+class NewGameButton extends Actor {
+    public NewGameButton() {
         super("VisualFolder/sprites/new_game.png");
     }
 }
 
-class helpButton extends Actor {
-    public helpButton() {
+class HelpButton extends Actor {
+    public HelpButton() {
         super("VisualFolder/sprites/help.png");
     }
 }
 
-class gamePeg extends Actor {
+class GamePeg extends Actor {
     public static final int gamePegs = 8;
 
-    public gamePeg() {
-        super("VisualFolder/sprites/gamePeg.png", gamePegs);
+    public GamePeg() {
+        super("VisualFolder/sprites/GamePeg.png", gamePegs);
+    }
+}
+
+class GameWonGif extends Actor {
+    public GameWonGif() {
+        super("VisualFolder/sprites/game_won.gif");
+    }
+}
+
+class GameOverGif extends Actor {
+    public GameOverGif() {
+        super("VisualFolder/sprites/gameover_sign.gif");
     }
 }
