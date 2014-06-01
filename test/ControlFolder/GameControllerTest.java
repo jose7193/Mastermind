@@ -1,7 +1,6 @@
 
 package ControlFolder;
 
-import moduleFolder.Player;
 import org.testng.annotations.Test;
 
 import static ControlFolder.Pegs.*;
@@ -11,13 +10,10 @@ import static ControlFolder.Pegs.*;
  */
 public class GameControllerTest {
 
-    Player player1 = new Player();
-    Player player2 = new Player();
-
     @Test
     public void shouldDecrementNumberOfStepsLeft() {
         // Given
-        GameController gameController = new GameController(player1, player2);
+        GameController gameController = new GameController();
         int initialNumber = gameController.getNumberOfStepsLeft();
         int finalNumber;
 
@@ -41,7 +37,7 @@ public class GameControllerTest {
     @Test
     public void shouldStartNewGame() {
         // Given
-        GameController gameController = new GameController(player1, player2);
+        GameController gameController = new GameController();
 
         int[] guessPegs = new int[]{
                 GREEN.getIntValue(),
@@ -70,7 +66,7 @@ public class GameControllerTest {
     @Test
     public void shouldPassCodeMakerPegColorsToBoard() {
         // Given
-        GameController gameController = new GameController(player1, player2);
+        GameController gameController = new GameController();
 
         int[] codePegs = new int[]{
                 GREEN.getIntValue(),
@@ -92,7 +88,7 @@ public class GameControllerTest {
     @Test
     public void shouldPassCodeBreakersGuessPegsToBoard() {
         // Given
-        GameController gameController = new GameController(player1, player2);
+        GameController gameController = new GameController();
 
         int currentRow = 2;
         int[] codePegs = new int[]{
@@ -115,7 +111,7 @@ public class GameControllerTest {
     @Test
     public void shouldReturnNoHintPegs() {
         // Given
-        GameController gameController = new GameController(player1, player2);
+        GameController gameController = new GameController();
 
         int currentRow = 1;
         int[] codePegs = new int[]{
@@ -154,7 +150,7 @@ public class GameControllerTest {
     @Test
     public void shouldReturnOneWhiteHintPegForCorrectColorButWrongPosition() {
         // Given
-        GameController gameController = new GameController(player1, player2);
+        GameController gameController = new GameController();
 
         int currentRow = 1;
         int[] codePegs = new int[]{
@@ -193,7 +189,7 @@ public class GameControllerTest {
     @Test
     public void shouldReturnOneBlackHintPegForCorrectColorAndCorrectPosition() {
         // Given
-        GameController gameController = new GameController(player1, player2);
+        GameController gameController = new GameController();
 
         int currentRow = 1;
         int[] codePegs = new int[]{
@@ -231,7 +227,7 @@ public class GameControllerTest {
     @Test
     public void shouldReturnOneBlackHintPegForSameCodeColorsScenario() {
         // Given
-        GameController gameController = new GameController(player1, player2);
+        GameController gameController = new GameController();
 
         int currentRow = 1;
         int[] codePegs = new int[]{
@@ -270,7 +266,7 @@ public class GameControllerTest {
     @Test
     public void shouldReturnOneBlackHintPegAndWhiteHingPeg() {
         // Given
-        GameController gameController = new GameController(player1, player2);
+        GameController gameController = new GameController();
 
         int currentRow = 1;
         int[] codePegs = new int[]{
@@ -309,7 +305,7 @@ public class GameControllerTest {
     @Test
     public void shouldReturnAllBlackHintPegs() {
         // Given
-        GameController gameController = new GameController(player1, player2);
+        GameController gameController = new GameController();
 
         int currentRow = 1;
         int[] codePegs = new int[]{
@@ -347,7 +343,7 @@ public class GameControllerTest {
     @Test
     public void shouldReturnAllWhiteHintPegs() {
         // Given
-        GameController gameController = new GameController(player1, player2);
+        GameController gameController = new GameController();
 
         int currentRow = 1;
         int[] codePegs = new int[]{
