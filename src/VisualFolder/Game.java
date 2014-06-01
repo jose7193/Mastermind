@@ -1,9 +1,6 @@
-package VisualFolder;//
+package VisualFolder;
 /*
-since backend will be sending a Color array.
-We must create a method decodeColortoNumber & decode NumbertoColor
-for frontend (unless backend can be chaged
-
+Pegs to Color
 0:blue
 1:red
 2:black
@@ -13,8 +10,6 @@ for frontend (unless backend can be chaged
 6:pink
 7:gray
 
-
-
 /*
 / @author Anne_Caballero
 /
@@ -23,6 +18,9 @@ for frontend (unless backend can be chaged
 import ControlFolder.GameController;
 import ch.aplu.jgamegrid.*;
 import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import moduleFolder.Player;
 
 
@@ -175,7 +173,6 @@ public class Game extends GameGrid implements GGMouseListener
 
         /////////////////////// THE METHOD BELOW WILL PASS THE SECRET CODE PEGS TO GAME CONTROLLER AS INT/////////////
         gameController.setCodeMakerPegColors(winningPegCombination);
-        ///////////////////////////////////
 
         marker = new currentRow();
         addActor(marker, new Location(1, gamePegCombinationPanel));
@@ -198,9 +195,7 @@ public class Game extends GameGrid implements GGMouseListener
 
         int[] evaluate = gameController.getHintPegs(gameCurrentRow);
 
-        /////////////////////////////
-
-        //INSERT CODE TO:
+ 
         //iterate over the array of hint pegs
         //Make counter for blackgamePegs and whitegamepegs
         
@@ -214,16 +209,23 @@ public class Game extends GameGrid implements GGMouseListener
         showHintgamePegs(whitegamePegs, blackgamePegs);
 
         if (blackgamePegs == 4) //correct combination
-            finishRound("done");
+        {
+            addActor(new game_won(), new Location(1, 12));
+            finishRound("You Win");
+        }
+           
         else{
             gamePegCombinationPanel--; // go to next row
-            System.out.println("The row is currently" + gamePegCombinationPanel);
+            //System.out.println("The row is currently" + gamePegCombinationPanel);
             gameCurrentRow++;
         }
 
         if (gamePegCombinationPanel == 1) //no more guesses left
-            finishRound("done");
-
+        {   
+            
+            addActor(new game_over(), new Location(1, 12));
+            finishRound("Game Over");
+        }
         marker.setLocation(new Location(1, gamePegCombinationPanel));
         gamePegsOnBoard = 0;
         removeActors(EvaluateButton.class);
@@ -300,5 +302,24 @@ class gamePeg extends Actor
     public gamePeg()
     {
         super("VisualFolder/sprites/gamePeg.png", gamePegs);
+    }
+}
+
+//-------- class game_won-------------------------
+// Assigns gui when game is won
+class game_won extends Actor
+{
+    public game_won()
+    {
+        super("VisualFolder/sprites/game_won.gif");
+    }
+}
+//-------- class game_over-------------------------
+// Assigns gui when game is won
+class game_over extends Actor
+{
+    public game_over()
+    {
+        super("VisualFolder/sprites/gameover_sign.gif");
     }
 }
