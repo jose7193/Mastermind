@@ -22,11 +22,11 @@ import ch.aplu.jgamegrid.*;
 import java.awt.*;
 
 public class Game extends GameGrid implements GGMouseListener {
-    GameController gameController = new GameController();
-    int[] winningPegCombination = new int[4];
-    int currentPegCombinationStep;
-    boolean roundFinished;
-    currentRow marker;
+    private GameController gameController = new GameController();
+    private int[] winningPegCombination = new int[4];
+    private int currentPegCombinationStep;
+    private boolean roundFinished;
+    private currentRow marker;
     private int gamePegsOnBoard = 0;
 
     public Game() {
@@ -124,8 +124,7 @@ public class Game extends GameGrid implements GGMouseListener {
         for (int spriteNr : winningPegCombination) {
             gamePeg gamePeg = new gamePeg();
             gamePeg.show(spriteNr);
-            addActor(gamePeg, new Location(x, 1) {
-            });
+            addActor(gamePeg, new Location(x, 1) {});
             x++;
         }
     }
@@ -137,8 +136,9 @@ public class Game extends GameGrid implements GGMouseListener {
         roundFinished = false;
         gameController.startNewGame();
 
-        for (int i = 0; i < winningPegCombination.length; i++)
+        for (int i = 0; i < winningPegCombination.length; i++) {
             winningPegCombination[i] = (int) (Math.random() * gamePeg.gamePegs);
+        }
 
         gameController.setCodeMakerPegColors(winningPegCombination);
 
@@ -170,7 +170,7 @@ public class Game extends GameGrid implements GGMouseListener {
         if (blackgamePegs == 4)
             finishRound();
 
-        if (currentPegRow == 1)
+        if (currentPegRow == 2)
             finishRound();
 
         marker.setLocation(new Location(1, currentPegRow - 1));
