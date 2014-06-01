@@ -31,6 +31,7 @@ public class Game extends GameGrid implements GGMouseListener
     GameController gameController = new GameController(new Player(), new Player());
     int[] winningPegCombination = new int[4];
     int gamePegCombinationPanel;
+    int gameCurrentRow = 0; // to be passed to the gameController keeps track of no. of guesses
     boolean roundFinished;
     currentRow marker;
     private int gamePegsOnBoard = 0;
@@ -38,7 +39,7 @@ public class Game extends GameGrid implements GGMouseListener
     public Game()
     {
 
-        super(7, 13, 60, Color.RED, "VisualFolder/sprites/mastermind_bg_white.png", false);
+        super(7, 13, 60, null, "VisualFolder/sprites/mastermind_bg_white.png", false);
         this.addMouseListener(this, GGMouse.lPress | GGMouse.rPress);
         this.setTitle("MasterMind Game - Group 5");
         getBg().setPaintColor(Color.red);
@@ -80,12 +81,11 @@ public class Game extends GameGrid implements GGMouseListener
 
                 // Stores 4 player gamePeg guesses to an array. Stores as an integer
                 guess[i] = getOneActorAt(new Location(2 + i, gamePegCombinationPanel)).getIdVisible();
-
             /////////////////////// THE METHOD BELOW WILL PASS THE GUESS PEGS TO GAME CONTROLLER AS INT/////////////
-            gameController.setCodeBreakerGuessPegs(guess, loc.y);
+            gameController.setCodeBreakerGuessPegs(guess, gameCurrentRow);
             /////////////////////////////////////////////
 
-            decodeHintPegs(gamePegCombinationPanel);
+            decodeHintPegs(gameCurrentRow);
         }
 
         if (loc.y == gamePegCombinationPanel && loc.x > 1 && loc.x < 6)
@@ -166,7 +166,7 @@ public class Game extends GameGrid implements GGMouseListener
     {
         removeAllActors();
         getBg().clear();
-        gamePegCombinationPanel = this.nbVertCells - 4;
+        gamePegCombinationPanel = this.nbVertCells - 4; // number of cells in the y direction (13 total in  game) Note: nbvercells is not the coordinate
         roundFinished = false;
 
         for (int i = 0; i < winningPegCombination.length; i++)
@@ -189,29 +189,37 @@ public class Game extends GameGrid implements GGMouseListener
     // -----------method decodeHontPegs -----------
     // This is test code. back end programmers must replace it
     // CheckIfPlayer won must call showHintgamePegs method from the frontend design
-    private void decodeHintPegs( int gamePegCombinationPanel)
+    private void decodeHintPegs( int gameCurrentRow)
     {
 
         int blackgamePegs = 0, whitegamePegs = 0;
 
         ///////////////////////MUST GET ARRAY OF HINTPEGS AS INT FROM GAME CONTROLLER /////////////
 
-        gameController.getHintPegs(gamePegCombinationPanel);
+        int[] evaluate = gameController.getHintPegs(gameCurrentRow);
 
         /////////////////////////////
 
         //INSERT CODE TO:
         //iterate over the array of hint pegs
         //Make counter for blackgamePegs and whitegamepegs
+        
+        for(int color: evaluate){
+            if ( color == 2) blackgamePegs++;
+            if (color == 3) whitegamePegs++;
+           // if ( color == -1) ;  Irrelevant because no operation is done with -1
+        }
 
 
-        whitegamePegs -= blackgamePegs;
         showHintgamePegs(whitegamePegs, blackgamePegs);
 
         if (blackgamePegs == 4) //correct combination
             finishRound("done");
-        else
+        else{
             gamePegCombinationPanel--; // go to next row
+            System.out.println("The row is currently" + gamePegCombinationPanel);
+            gameCurrentRow++;
+        }
 
         if (gamePegCombinationPanel == 1) //no more guesses left
             finishRound("done");
@@ -225,6 +233,7 @@ public class Game extends GameGrid implements GGMouseListener
 public static void main(String[] args)
   {
       Game mastermind = new Game();
+      
   }
 }
 
