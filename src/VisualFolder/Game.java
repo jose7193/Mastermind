@@ -1,4 +1,4 @@
-package VisualFolder;//
+package VisualFolder;
 /*
 
 0:blue
@@ -30,7 +30,7 @@ public class Game extends GameGrid implements GGMouseListener {
     private int gamePegsOnBoard = 0;
 
     public Game() {
-        super(7, 13, 60, null, "VisualFolder/sprites/mastermind_bg_white.png", false);
+        super(7, 13, 60, null, "VisualFolder/images/mastermind_bg_white.png", false);
         this.addMouseListener(this, GGMouse.lPress | GGMouse.rPress);
         this.setTitle("MasterMind Game - Group 5");
         getBg().setPaintColor(Color.red);
@@ -185,33 +185,33 @@ public class Game extends GameGrid implements GGMouseListener {
 
 class currentRow extends Actor {
     public currentRow() {
-        super("VisualFolder/sprites/activeRowMarker.png");
+        super("VisualFolder/images/activeRowMarker.png");
     }
 }
 
 class EvalgamePeg extends Actor {
     public EvalgamePeg(int sprite) {
         // sprite 0 = black, sprite 1 = white
-        super(true, "VisualFolder/sprites/EvalPeg.png", 2);
+        super(true, "VisualFolder/images/EvalPeg.png", 2);
         show(sprite);
     }
 }
 
 class EvaluateButton extends Actor {
     public EvaluateButton() {
-        super("VisualFolder/sprites/EvaluateButton.png");
+        super("VisualFolder/images/EvaluateButton.png");
     }
 }
 
 class NewGameButton extends Actor {
     public NewGameButton() {
-        super("VisualFolder/sprites/new_game.png");
+        super("VisualFolder/images/new_game.png");
     }
 }
 
 class HelpButton extends Actor {
     public HelpButton() {
-        super("VisualFolder/sprites/help.png");
+        super("VisualFolder/images/help.png");
     }
 }
 
@@ -219,18 +219,18 @@ class GamePeg extends Actor {
     public static final int gamePegs = 8;
 
     public GamePeg() {
-        super("VisualFolder/sprites/GamePeg.png", gamePegs);
+        super("VisualFolder/images/GamePeg.png", gamePegs);
     }
 }
 
 class GameWonGif extends Actor {
     public GameWonGif() {
-        super("VisualFolder/sprites/game_won.gif");
+        super("VisualFolder/images/game_won.gif");
     }
 }
 
 class GameOverGif extends Actor {
     public GameOverGif() {
-        super("VisualFolder/sprites/gameover_sign.gif");
+        super("VisualFolder/images/gameover_sign.gif");
     }
 }
