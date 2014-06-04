@@ -1,19 +1,4 @@
 package VisualFolder;
-/*
-
-0:blue
-1:red
-2:black
-3:white
-4:green
-5:orange
-6:pink
-7:gray
-
-/*
-/ @author Anne_Caballero
-/
-*/
 
 import ControlFolder.GameController;
 import ControlFolder.Pegs;
@@ -30,7 +15,8 @@ public class Game extends GameGrid implements GGMouseListener {
     private int gamePegsOnBoard = 0;
 
     public Game() {
-        super(7, 13, 60, null, "VisualFolder/images/mastermind_bg_white.png", false);
+        super(7, 13, 60, null, "sprites/mastermind_bg_white.png", false);
+
         this.addMouseListener(this, GGMouse.lPress | GGMouse.rPress);
         this.setTitle("MasterMind Game - Group 5");
         getBg().setPaintColor(Color.red);
@@ -94,14 +80,12 @@ public class Game extends GameGrid implements GGMouseListener {
         return true;
     }
 
-    // -----------method finishRound -----------
     private void finishRound() {
         removeActor(marker);
         showSolution();
         roundFinished = true;
     }
 
-    // -----------method showHintPegs -----------
     // Show gui pegs for feedback panel
     private void showHintgamePegs(int whitegamePegs, int blackgamePegs) {
         for (int i = 0; i < 4; i++) {
@@ -185,33 +169,33 @@ public class Game extends GameGrid implements GGMouseListener {
 
 class currentRow extends Actor {
     public currentRow() {
-        super("VisualFolder/images/activeRowMarker.png");
+        super("sprites/activeRowMarker.png");
     }
 }
 
 class EvalgamePeg extends Actor {
     public EvalgamePeg(int sprite) {
         // sprite 0 = black, sprite 1 = white
-        super(true, "VisualFolder/images/EvalPeg.png", 2);
+        super(true, "sprites/evalPeg.png", 2);
         show(sprite);
     }
 }
 
 class EvaluateButton extends Actor {
     public EvaluateButton() {
-        super("VisualFolder/images/EvaluateButton.png");
+        super("sprites/evaluateButton.png");
     }
 }
 
 class NewGameButton extends Actor {
     public NewGameButton() {
-        super("VisualFolder/images/new_game.png");
+        super("sprites/new_game.png");
     }
 }
 
 class HelpButton extends Actor {
     public HelpButton() {
-        super("VisualFolder/images/help.png");
+        super("sprites/help.png");
     }
 }
 
@@ -219,18 +203,18 @@ class GamePeg extends Actor {
     public static final int gamePegs = 8;
 
     public GamePeg() {
-        super("VisualFolder/images/GamePeg.png", gamePegs);
+        super("sprites/gamePeg.png", gamePegs);
     }
 }
 
 class GameWonGif extends Actor {
     public GameWonGif() {
-        super("VisualFolder/images/game_won.gif");
+        super("sprites/game_won.gif");
     }
 }
 
 class GameOverGif extends Actor {
     public GameOverGif() {
-        super("VisualFolder/images/gameover_sign.gif");
+        super("sprites/gameover_sign.gif");
     }
 }

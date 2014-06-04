@@ -3,7 +3,7 @@ package VisualFolder;
 /*
  * SplashDemo.java
  * Dependencies: splash_screen.gif
- * run from the command line: java -splash:images/splash_screen.gif SplashDemo
+ * run from the command line: java -splash:sprites/splash_screen.gif SplashDemo
  * Author: Dave Buxton
  */
 
