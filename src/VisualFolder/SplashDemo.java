@@ -43,7 +43,11 @@ public class SplashDemo extends JFrame implements ActionListener {
 		}
       
         splash.close();
+<<<<<<< HEAD
 		Game.main(null);
+=======
+        
+>>>>>>> c6a91b1ede35070e8c939934b070b9a3c58c1d72
         setVisible(true);
         toFront();
     }
