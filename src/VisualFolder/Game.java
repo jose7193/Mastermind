@@ -92,7 +92,7 @@ public class Game extends GameGrid implements GGMouseListener {
 
                 // Go! button appears once 4 GamePeg guesses have been established
                 if (gamePegsOnBoard == 4) {
-                    addActor(new EvaluateButton(), new Location(1, currentPegCombinationStep));
+                    addActor(new calculateButton(), new Location(1, currentPegCombinationStep));
                 }
             }
 
@@ -153,12 +153,12 @@ public class Game extends GameGrid implements GGMouseListener {
     private void showHintgamePegs(int whitegamePegs, int blackgamePegs) {
         for (int i = 0; i < 4; i++) {
             if (blackgamePegs > 0) {
-                EvalgamePeg ep = new EvalgamePeg(0);
+                HintGamePeg ep = new HintGamePeg(0);
                 addActor(ep, new Location(1, currentPegCombinationStep));
                 ep.turn(90 * i);
                 blackgamePegs--;
             } else if (whitegamePegs > 0) {
-                EvalgamePeg ep = new EvalgamePeg(1);
+                HintGamePeg ep = new HintGamePeg(1);
                 addActor(ep, new Location(1, currentPegCombinationStep));
                 ep.turn(90 * i);
                 whitegamePegs--;
@@ -225,7 +225,7 @@ public class Game extends GameGrid implements GGMouseListener {
 
         marker.setLocation(new Location(1, currentPegRow - 1));
         gamePegsOnBoard = 0;
-        removeActors(EvaluateButton.class);
+        removeActors(calculateButton.class);
     }
 }
 
@@ -235,17 +235,17 @@ class currentRow extends Actor {
     }
 }
 
-class EvalgamePeg extends Actor {
-    public EvalgamePeg(int sprite) {
+class HintGamePeg extends Actor {
+    public HintGamePeg(int sprite) {
         // sprite 0 = black, sprite 1 = white
-        super(true, "sprites/evalPeg.png", 2);
+        super(true, "sprites/hintPeg.png", 2);
         show(sprite);
     }
 }
 
-class EvaluateButton extends Actor {
-    public EvaluateButton() {
-        super("sprites/evaluateButton.png");
+class calculateButton extends Actor {
+    public calculateButton() {
+        super("sprites/calculateButton.png");
     }
 }
 
