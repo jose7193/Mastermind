@@ -4,13 +4,8 @@ import ControlFolder.GameController;
 import ControlFolder.Pegs;
 import ch.aplu.jgamegrid.*;
 
+import javax.swing.*;
 import java.awt.*;
-import javafx.scene.layout.Border;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public class Game extends GameGrid implements GGMouseListener {
     private GameController gameController = new GameController();
@@ -42,29 +37,29 @@ public class Game extends GameGrid implements GGMouseListener {
 
         // Assigns coordinates where the user clicks on the board to a variable
         Location loc = toLocation(mouse.getX(), mouse.getY());
-          if(loc.x == 2 && loc.y == 11){
+        if (loc.x == 2 && loc.y == 11) {
             spriteColor = 1;
         }
-        if(loc.x == 3 && loc.y == 11){
+        if (loc.x == 3 && loc.y == 11) {
             spriteColor = 2;
         }
-        if(loc.x == 4 && loc.y == 11){
+        if (loc.x == 4 && loc.y == 11) {
             spriteColor = 4;
         }
-        if(loc.x == 5 && loc.y == 11){
+        if (loc.x == 5 && loc.y == 11) {
             spriteColor = 3;
         }
 
-        if(loc.x == 2 && loc.y == 10){
+        if (loc.x == 2 && loc.y == 10) {
             spriteColor = 5;
         }
-        if(loc.x == 3 && loc.y == 10){
+        if (loc.x == 3 && loc.y == 10) {
             spriteColor = 0;
         }
-        if(loc.x == 4 && loc.y == 10){
+        if (loc.x == 4 && loc.y == 10) {
             spriteColor = 6;
         }
-        if(loc.x == 5 && loc.y == 10){
+        if (loc.x == 5 && loc.y == 10) {
             spriteColor = 7;
         }
         boolean isClickOnNewGame = (loc.x == 1 && loc.y == 11);
@@ -102,13 +97,11 @@ public class Game extends GameGrid implements GGMouseListener {
             }
 
             //insert code for drag and drop, used left and right click as temporary mouse event (see code below)
-            else if (mouse.getEvent() == GGMouse.lPress){
-               getOneActorAt(loc).removeSelf();
+            else if (mouse.getEvent() == GGMouse.lPress) {
+                getOneActorAt(loc).removeSelf();
                 gamePegsOnBoard--;
-            }
-            else
-                {
-               getOneActorAt(loc).removeSelf();
+            } else {
+                getOneActorAt(loc).removeSelf();
                 gamePegsOnBoard--;
             }
 
@@ -122,11 +115,11 @@ public class Game extends GameGrid implements GGMouseListener {
         showSolution();
         roundFinished = true;
     }
-    
-    private void showHelp(){
+
+    private void showHelp() {
         JPanel contentPanel = new JPanel();
         JFrame frame = new JFrame("Mastermind Help");
-        frame.setSize(1300,500);
+        frame.setSize(1300, 500);
         javax.swing.border.Border padding = BorderFactory.createEmptyBorder(5, 5, 5, 5);
         contentPanel.setBorder(padding);
         frame.setContentPane(contentPanel);
@@ -152,10 +145,8 @@ public class Game extends GameGrid implements GGMouseListener {
         "</p>" +
         "</html>",SwingConstants.CENTER));
 
-        //textLabel.setPreferredSize(new Dimension(300, 100));
-        //frame.getContentPane().add(textLabel);
         frame.setLocationRelativeTo(null);
-        frame.setVisible(true);   
+        frame.setVisible(true);
     }
 
     // Show gui pegs for feedback panel
@@ -180,7 +171,8 @@ public class Game extends GameGrid implements GGMouseListener {
         for (int spriteNr : winningPegCombination) {
             GamePeg gamePeg = new GamePeg(spriteColor);
             gamePeg.show(spriteNr);
-            addActor(gamePeg, new Location(x, 1) {});
+            addActor(gamePeg, new Location(x, 1) {
+            });
             x++;
         }
     }
@@ -274,7 +266,7 @@ class HelpButton extends Actor {
 class GamePeg extends Actor {
     public static final int gamePegs = 8;
 
-    public GamePeg(int sprite ) {
+    public GamePeg(int sprite) {
         super("sprites/gamePeg.png", gamePegs);
         show(sprite);
     }
