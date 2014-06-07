@@ -1,0 +1,2 @@
+Main-Class: SplashDemo
+SplashScreen-Image: images/splash_screen.gif

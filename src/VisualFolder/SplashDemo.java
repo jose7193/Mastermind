@@ -2,13 +2,14 @@
  * SplashDemo.java
  * Dependencies: splash_screen.gif
  * run from the command line: java -splash:images/splash_screen.gif SplashDemo
+ * or run the jar file from the command line: java -jar mastermind.jar
  * Author: Dave Buxton
  */
-package VisualFolder;
 
 import java.awt.*;
 import java.awt.event.*;
-port javax.swing.JFrame;
+
+import javax.swing.JFrame;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -43,11 +44,7 @@ public class SplashDemo extends JFrame implements ActionListener {
 		}
       
         splash.close();
-<<<<<<< HEAD
 		Game.main(null);
-=======
-        
->>>>>>> c6a91b1ede35070e8c939934b070b9a3c58c1d72
         setVisible(true);
         toFront();
     }
