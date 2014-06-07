@@ -5,6 +5,7 @@ import ControlFolder.Pegs;
 import ch.aplu.jgamegrid.*;
 
 import java.awt.*;
+import javafx.scene.layout.Border;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +17,7 @@ public class Game extends GameGrid implements GGMouseListener {
     private int[] winningPegCombination = new int[4];
     private int currentPegCombinationStep;
     private boolean roundFinished;
+    int spriteColor;
     private currentRow marker;
     private int gamePegsOnBoard = 0;
 
@@ -40,6 +42,31 @@ public class Game extends GameGrid implements GGMouseListener {
 
         // Assigns coordinates where the user clicks on the board to a variable
         Location loc = toLocation(mouse.getX(), mouse.getY());
+          if(loc.x == 2 && loc.y == 11){
+            spriteColor = 1;
+        }
+        if(loc.x == 3 && loc.y == 11){
+            spriteColor = 2;
+        }
+        if(loc.x == 4 && loc.y == 11){
+            spriteColor = 4;
+        }
+        if(loc.x == 5 && loc.y == 11){
+            spriteColor = 3;
+        }
+
+        if(loc.x == 2 && loc.y == 10){
+            spriteColor = 5;
+        }
+        if(loc.x == 3 && loc.y == 10){
+            spriteColor = 0;
+        }
+        if(loc.x == 4 && loc.y == 10){
+            spriteColor = 6;
+        }
+        if(loc.x == 5 && loc.y == 10){
+            spriteColor = 7;
+        }
         boolean isClickOnNewGame = (loc.x == 1 && loc.y == 11);
         boolean isClickOnHelpButton = (loc.x == 1 && loc.y == 10);
         boolean isClickOnGamePegs = (loc.y == currentPegCombinationStep) && (loc.x > 1 && loc.x < 6);
@@ -65,7 +92,7 @@ public class Game extends GameGrid implements GGMouseListener {
 
         if (isClickOnGamePegs) {
             if (getOneActorAt(loc) == null) {
-                this.addActor(new GamePeg(), loc);
+                this.addActor(new GamePeg(spriteColor), loc);
                 gamePegsOnBoard++;
 
                 // Go! button appears once 4 GamePeg guesses have been established
@@ -75,10 +102,15 @@ public class Game extends GameGrid implements GGMouseListener {
             }
 
             //insert code for drag and drop, used left and right click as temporary mouse event (see code below)
-            else if (mouse.getEvent() == GGMouse.lPress)
-                getOneActorAt(loc).showNextSprite();
+            else if (mouse.getEvent() == GGMouse.lPress){
+               getOneActorAt(loc).removeSelf();
+                gamePegsOnBoard--;
+            }
             else
-                getOneActorAt(loc).showPreviousSprite();
+                {
+               getOneActorAt(loc).removeSelf();
+                gamePegsOnBoard--;
+            }
 
         }
         refresh();
@@ -146,7 +178,7 @@ public class Game extends GameGrid implements GGMouseListener {
     private void showSolution() {
         int x = 2;
         for (int spriteNr : winningPegCombination) {
-            GamePeg gamePeg = new GamePeg();
+            GamePeg gamePeg = new GamePeg(spriteColor);
             gamePeg.show(spriteNr);
             addActor(gamePeg, new Location(x, 1) {});
             x++;
@@ -242,8 +274,9 @@ class HelpButton extends Actor {
 class GamePeg extends Actor {
     public static final int gamePegs = 8;
 
-    public GamePeg() {
+    public GamePeg(int sprite ) {
         super("sprites/gamePeg.png", gamePegs);
+        show(sprite);
     }
 }
 
