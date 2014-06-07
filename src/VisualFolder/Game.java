@@ -5,6 +5,11 @@ import ControlFolder.Pegs;
 import ch.aplu.jgamegrid.*;
 
 import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class Game extends GameGrid implements GGMouseListener {
     private GameController gameController = new GameController();
@@ -44,7 +49,7 @@ public class Game extends GameGrid implements GGMouseListener {
         }
 
         if (isClickOnHelpButton) {
-            // Insert pop up for the instructions
+            showHelp();
         }
 
         // Coordinates for the "Go!" button which appears when guess slots have been filled up
@@ -84,6 +89,41 @@ public class Game extends GameGrid implements GGMouseListener {
         removeActor(marker);
         showSolution();
         roundFinished = true;
+    }
+    
+    private void showHelp(){
+        JPanel contentPanel = new JPanel();
+        JFrame frame = new JFrame("Mastermind Help");
+        frame.setSize(1300,500);
+        javax.swing.border.Border padding = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+        contentPanel.setBorder(padding);
+        frame.setContentPane(contentPanel);
+        contentPanel.add(new JLabel("<html>\n" +
+        "Hello and welcome to MasterMind Help!<br/><br/>\n" +
+        "The game is played using:<br/><br/></div>\n" +
+        "<ul>\n" +
+        "<li>a <em>decoding board</em>, with a <em>shield</em> at one end covering a row of four large holes, and eight additional rows containing four large holes next to a set of four small holes;</li>\n" +
+        "<li><em>code pegs</em> of eight different colors, with round heads, which will be placed in the large holes on the board; and</li>\n" +
+        "<li><em>key pegs</em>, some colored or black, some white, which are flat-headed and smaller than the code pegs; they will be placed in the small holes on the board.</li>\n" +
+        "</ul>\n" + "<p> To set the code pegs, just click on a colored peg. The peg will automatically show in the first available place.<br/> \n" +
+        "Once you've set all 4 colors, click on the Go! to confirm and the key pegs will automatically show up.\n" +
+        " <br/><br/>\n" +
+        "  The key pegs are simple to read: <br/><br/> \n" +
+        " A <em>black</em> key peg is placed for each code peg from the guess which is correct in both color and position.<br/>\n" +
+        " A <em>white</em> key peg indicates the existence of a correct color code peg placed in the wrong position.<br/><br/>\n" +
+        "\n" +
+        "The goal is to guess the correct code the computer has generated using the four code pegs.<br/><br/>\n" +
+        "Keep guessing until you run out of tries. <br/><br/>\n" +
+        "Advanced Hint: Use the code pegs wisely, they are a great help! <br/><br/>\n" +
+        "\n" +
+        "Good Luck!!\n" +
+        "</p>" +
+        "</html>",SwingConstants.CENTER));
+
+        //textLabel.setPreferredSize(new Dimension(300, 100));
+        //frame.getContentPane().add(textLabel);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);   
     }
 
     // Show gui pegs for feedback panel
