@@ -218,9 +218,7 @@ public class Game extends GameGrid implements GGMouseListener {
         if (blackgamePegs == 4) {
             finishRound();
             addActor(new GameWonGif(), new Location(1, 12));
-        }
-
-        if (currentPegRow == 2) {
+        } else if (currentPegRow == 2 ) {
             finishRound();
             addActor(new GameOverGif(), new Location(1, 12));
         }
